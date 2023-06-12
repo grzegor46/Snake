@@ -55,6 +55,16 @@ public class MyGdxGame extends ApplicationAdapter {
 		}
 		shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
 
+
+		snake.setX_pos((snake.getX_pos() + squareOfScreen));
+		this.x = snake.getX_pos();
+		shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
+		snakeMove();
+		try {
+			sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 //		Gdx.gl.glClearColor(0, 0, 0, 1);
 //		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
