@@ -13,28 +13,31 @@ public class MyGdxGame extends ApplicationAdapter {
 	private int widthScreen, heightScreen;
 	private int squareOfScreen = 50;
 	private OrthographicCamera orthographicCamera;
-	private ShapeRenderer snakeShape;
-	private float x=0;
-	private float y=0;
+	private ShapeRenderer shapeRenderer;
+	private int x=0;
+	private int y=0;
+	private Snake snake;
 
 
 
 	@Override
 	public void create () {
-		this.snakeShape = new ShapeRenderer();
+		this.shapeRenderer = new ShapeRenderer();
 		this.widthScreen = Gdx.graphics.getWidth();
 		this.heightScreen = Gdx.graphics.getHeight();
 		this.orthographicCamera = new OrthographicCamera();
 		this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
 		batch = new SpriteBatch();
+		this.snake = new Snake(x ,y, shapeRenderer, squareOfScreen);
+
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
-		snakeShape.begin(ShapeRenderer.ShapeType.Filled);
-		snakeShape.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
-		snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
+		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+		shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
+		shapeRenderer.rect(snake.getX_pos(), snake.getY_pos(), squareOfScreen, squareOfScreen);
 		snakeMove();
 
 		batch.begin();
@@ -45,24 +48,28 @@ public class MyGdxGame extends ApplicationAdapter {
 //	TODO: try refactor it
 	private void snakeMove(){
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-			this.x = squareOfScreen-50;
-			snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
+			snake.setX_pos((snake.getX_pos() + -squareOfScreen));
+			this.x = snake.getX_pos();
+			shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) ){
-			this.x = squareOfScreen;
-			snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
+			snake.setX_pos((snake.getX_pos() + squareOfScreen));
+			this.x = snake.getX_pos();
+			shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP) ) {
-			this.y = squareOfScreen;
-			snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
+			snake.setY_pos((snake.getY_pos() + squareOfScreen));
+			this.y = snake.getY_pos();
+			shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN) ){
-			this.y = squareOfScreen-50;
-			snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
+			snake.setY_pos((snake.getY_pos() + -squareOfScreen));
+			this.y = snake.getY_pos();
+			shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
 		}
 
-		snakeShape.rect(x, y, squareOfScreen, squareOfScreen);
-		snakeShape.end();
+		shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
+		shapeRenderer.end();
 	}
 
 	@Override
