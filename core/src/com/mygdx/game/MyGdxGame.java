@@ -27,7 +27,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void create() {
-        Gdx.graphics.setContinuousRendering(true);
         this.shapeRenderer = new ShapeRenderer();
         this.shapeRenderer2 = new ShapeRenderer();
         this.widthScreen = Gdx.graphics.getWidth();
@@ -110,27 +109,6 @@ public class MyGdxGame extends ApplicationAdapter {
                 this.y = snake.getY_pos();
                 break;
         }
-        shapeRenderer.rect(x, y, squareOfScreen, squareOfScreen);
-
-
-//		if (Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-//			snake.setX_pos((snake.getX_pos() + -squareOfScreen));
-//			this.x = snake.getX_pos();
-//		}
-//		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) ){
-//			snake.setX_pos((snake.getX_pos() + squareOfScreen));
-//			this.x = snake.getX_pos();
-//		}
-//		if (Gdx.input.isKeyPressed(Input.Keys.UP) ) {
-//			snake.setY_pos((snake.getY_pos() + squareOfScreen));
-//			this.y = snake.getY_pos();
-//		}
-//		if (Gdx.input.isKeyPressed(Input.Keys.DOWN) ){
-//			snake.setY_pos((snake.getY_pos() + -squareOfScreen));
-//			this.y = snake.getY_pos();
-//		}
-
-
     }
 
     @Override
