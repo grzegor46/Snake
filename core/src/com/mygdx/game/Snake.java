@@ -41,25 +41,6 @@ public class Snake {
         this.squareOfScreen = squareOfScreen;
     }
 
-    public void snakeMove(){
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) ) {
-            this.x_pos = squareOfScreen + -squareOfScreen;
-            shapeRenderer.rect(x_pos, y_pos, squareOfScreen, squareOfScreen);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) ){
-            this.x_pos = squareOfScreen;
-            shapeRenderer.rect(x_pos, y_pos, squareOfScreen, squareOfScreen);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP) ) {
-            this.y_pos = squareOfScreen;
-            shapeRenderer.rect(x_pos, y_pos, squareOfScreen, squareOfScreen);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) ){
-            this.y_pos = squareOfScreen + -squareOfScreen;
-            shapeRenderer.rect(x_pos, y_pos, squareOfScreen, squareOfScreen);
-        }
-
-        shapeRenderer.rect(x_pos, y_pos, squareOfScreen, squareOfScreen);
-        shapeRenderer.end();
+    public void snakeMove() {
     }
 }
