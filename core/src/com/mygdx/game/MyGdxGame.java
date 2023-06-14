@@ -11,15 +11,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import static java.lang.Thread.sleep;
 
 public class MyGdxGame extends ApplicationAdapter {
-    SpriteBatch batch;
-    private int widthScreen, heightScreen;
+
+    private int widthScreen;
+    private int heightScreen;
     private final float squareOfScreen = 10;
     private OrthographicCamera orthographicCamera;
     private ShapeRenderer shapeRenderer;
-    private final float x = 0;
-    private final float y = 0;
     private Snake snake;
-    private final int switchDigit = 0;
+
 
 
     @Override
@@ -29,7 +28,7 @@ public class MyGdxGame extends ApplicationAdapter {
         this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        this.snake = new Snake(shapeRenderer, squareOfScreen);
+        this.snake = new Snake(squareOfScreen);
 
     }
 
@@ -52,7 +51,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
     @Override
     public void dispose() {
-        batch.dispose();
         shapeRenderer.dispose();
     }
 

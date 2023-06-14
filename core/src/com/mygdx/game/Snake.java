@@ -8,12 +8,11 @@ public class Snake {
 
     private float x_pos=0;
     private float y_pos=0;
-    private ShapeRenderer shapeRenderer;
     private float squareOfScreen;
     private int switchDigit = 22;
 
-    public Snake( ShapeRenderer shapeRenderer, float squareOfScreen) {
-        this.shapeRenderer = shapeRenderer;
+    public Snake(float squareOfScreen) {
+
         this.squareOfScreen = squareOfScreen;
     }
 
@@ -31,14 +30,6 @@ public class Snake {
 
     public void setY_pos(float y_pos) {
         this.y_pos = y_pos;
-    }
-
-    public float getSquareOfScreen() {
-        return squareOfScreen;
-    }
-
-    public void setSquareOfScreen(float squareOfScreen) {
-        this.squareOfScreen = squareOfScreen;
     }
 
     public void drawSnake(ShapeRenderer shapeRenderer) {
@@ -84,6 +75,5 @@ public class Snake {
                 this.y_pos = getY_pos();
                 break;
         }
-//        return this.switchDigit;
     }
 }
