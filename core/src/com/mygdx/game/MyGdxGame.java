@@ -2,10 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -15,54 +13,36 @@ import static java.lang.Thread.sleep;
 public class MyGdxGame extends ApplicationAdapter {
     SpriteBatch batch;
     private int widthScreen, heightScreen;
-    private float squareOfScreen = 10;
+    private final float squareOfScreen = 10;
     private OrthographicCamera orthographicCamera;
     private ShapeRenderer shapeRenderer;
-    private ShapeRenderer shapeRenderer2;
-    private float x = 0;
-    private float y = 0;
+    private final float x = 0;
+    private final float y = 0;
     private Snake snake;
-    private int switchDigit = 22;
+    private final int switchDigit = 0;
 
 
     @Override
     public void create() {
         this.shapeRenderer = new ShapeRenderer();
-        this.shapeRenderer2 = new ShapeRenderer();
         this.widthScreen = Gdx.graphics.getWidth();
         this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        batch = new SpriteBatch();
-        this.snake = new Snake(x, y, shapeRenderer, squareOfScreen);
+        this.snake = new Snake(shapeRenderer, squareOfScreen);
 
     }
 
     @Override
     public void render() {
+
         ScreenUtils.clear(0, 0, 0, 1);
-
-//		shapeRenderer2.begin(ShapeRenderer.ShapeType.Filled);
-//		shapeRenderer2.setColor(70 / 255.0f, 60 / 255.0f, 40 / 255.0f, 1);
-//		shapeRenderer2.rect(100,100,50,50);
-
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
-        shapeRenderer.rect(snake.getX_pos(), snake.getY_pos(), squareOfScreen, squareOfScreen);
-
-        try {
-            sleep(80);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         shapeRenderer.setProjectionMatrix(orthographicCamera.combined);
-        // TODO move this method to snake class
-        snakeMove(this.switchDigit);
-
-
-//		shapeRenderer2.end();
+        speedSnake();
+        snake.drawSnake(shapeRenderer);
+        snake.snakeMove();
         shapeRenderer.end();
-
     }
 
     private void clearScreen() {
@@ -70,50 +50,18 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
-    //	TODO: try refactor it
-    private void snakeMove(int switchDigit) {
-
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            System.out.println(Gdx.input.isKeyPressed(Input.Keys.LEFT));
-            this.switchDigit = 21;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            System.out.println(Gdx.input.isKeyPressed(Input.Keys.RIGHT));
-            this.switchDigit = 22;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            System.out.println(Gdx.input.isKeyPressed(Input.Keys.UP));
-            this.switchDigit = 19;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            System.out.println(Gdx.input.isKeyPressed(Input.Keys.DOWN));
-            this.switchDigit = 20;
-        }
-
-        switch (switchDigit) {
-            case 21:
-                snake.setX_pos((snake.getX_pos() + -squareOfScreen));
-                this.x = snake.getX_pos();
-                break;
-            case 22:
-                snake.setX_pos((snake.getX_pos() + squareOfScreen));
-                this.x = snake.getX_pos();
-                break;
-            case 19:
-                snake.setY_pos((snake.getY_pos() + squareOfScreen));
-                this.y = snake.getY_pos();
-                break;
-            case 20:
-                snake.setY_pos((snake.getY_pos() + -squareOfScreen));
-                this.y = snake.getY_pos();
-                break;
-        }
-    }
-
     @Override
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
     }
+
+    private void speedSnake() {
+        try {
+            sleep(80);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
