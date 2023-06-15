@@ -40,19 +40,19 @@ public class Snake {
 
     public void snakeMove() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && switchDigit !=22) {
             System.out.println(Gdx.input.isKeyPressed(Input.Keys.LEFT));
             switchDigit = 21;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && switchDigit != 21) {
             System.out.println(Gdx.input.isKeyPressed(Input.Keys.RIGHT));
             switchDigit = 22;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) && switchDigit != 20) {
             System.out.println(Gdx.input.isKeyPressed(Input.Keys.UP));
             switchDigit = 19;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && switchDigit != 19) {
             System.out.println(Gdx.input.isKeyPressed(Input.Keys.DOWN));
             switchDigit = 20;
         }
