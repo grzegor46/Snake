@@ -33,7 +33,6 @@ public class Snake {
     }
 
     public void drawSnake(ShapeRenderer shapeRenderer) {
-
         shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
         shapeRenderer.rect(this.x_pos,this.y_pos,squareOfScreen,squareOfScreen);
     }
