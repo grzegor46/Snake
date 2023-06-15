@@ -4,15 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.util.ArrayList;
+
 public class Snake {
 
-    private int x_pos=0;
-    private int y_pos=0;
-    private int squareOfScreen;
+    private final ArrayList<Point> snakeBody = new ArrayList<>();
+    private int x_pos = 0;
+    private int y_pos = 0;
+    private final int squareOfScreen;
     private int switchDigit = 22;
 
     public Snake(int squareOfScreen) {
-
+        snakeBody.add(new Point(this.x_pos, this.y_pos));
         this.squareOfScreen = squareOfScreen;
     }
 
@@ -33,13 +36,31 @@ public class Snake {
     }
 
     public void drawSnake(ShapeRenderer shapeRenderer) {
-        shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
-        shapeRenderer.rect(this.x_pos,this.y_pos,squareOfScreen,squareOfScreen);
+
+        for (Point point : snakeBody) {
+            shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
+            shapeRenderer.rect(point.getX(), point.getY(), squareOfScreen, squareOfScreen);
+        }
+        shapeRenderer.rect(this.x_pos, this.y_pos, squareOfScreen, squareOfScreen);
+    }
+
+    public boolean isCollisionWithFood(Food food) {
+        Point headSnake = snakeBody.get(0);
+        return headSnake.getX() == food.getX_pos() || headSnake.getY() == food.getY_pos();
+    }
+
+    public void updateSnakeBody(Food food) {
+        snakeMove();
+        if(isCollisionWithFood(food)) {
+            snakeBody.add(new Point(this.x_pos, this.y_pos));
+        }
+
+        snakeBody.remove(snakeBody.size() - 1);
     }
 
     public void snakeMove() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && switchDigit !=22) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && switchDigit != 22) {
             System.out.println(Gdx.input.isKeyPressed(Input.Keys.LEFT));
             switchDigit = 21;
         }

@@ -12,7 +12,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("Snake");
-		config.setWindowedMode(600,600);
+		config.setWindowedMode(100,10);
 		config.useVsync(true);
 		new Lwjgl3Application(new MyGdxGame(), config);
 	}

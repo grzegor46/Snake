@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import static java.lang.Thread.sleep;
@@ -13,16 +12,14 @@ import static java.lang.Thread.sleep;
 public class MyGdxGame extends ApplicationAdapter {
 
 
-
     private int widthScreen;
     private int heightScreen;
-    private int squareOfScreen = 10;
+    private final int squareOfScreen = 10;
     private OrthographicCamera orthographicCamera;
     private ShapeRenderer shapeRenderer;
     private ShapeRenderer foodRender;
     private Snake snake;
     private Food food;
-
 
 
     @Override
@@ -33,10 +30,8 @@ public class MyGdxGame extends ApplicationAdapter {
         this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        this.snake = new Snake(squareOfScreen);
         this.food = new Food(squareOfScreen, this.widthScreen, this.heightScreen);
-
-
+        this.snake = new Snake(squareOfScreen);
     }
 
     @Override
@@ -49,7 +44,9 @@ public class MyGdxGame extends ApplicationAdapter {
         speedSnake();
         food.drawFood(foodRender);
         snake.drawSnake(shapeRenderer);
-        snake.snakeMove();
+
+//        snake.snakeMove();
+        snake.updateSnakeBody(food);
         clearScreen();
 
         shapeRenderer.end();

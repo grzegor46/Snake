@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Food {
 
-    private int x_pos=0;
-    private int y_pos=0;
+    private int x_pos;
+    private int y_pos;
 
     private float squareOfScreen;
 
