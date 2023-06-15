@@ -6,29 +6,29 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Snake {
 
-    private float x_pos=0;
-    private float y_pos=0;
-    private float squareOfScreen;
+    private int x_pos=0;
+    private int y_pos=0;
+    private int squareOfScreen;
     private int switchDigit = 22;
 
-    public Snake(float squareOfScreen) {
+    public Snake(int squareOfScreen) {
 
         this.squareOfScreen = squareOfScreen;
     }
 
-    public float getX_pos() {
+    public int getX_pos() {
         return x_pos;
     }
 
-    public void setX_pos(float x_pos) {
+    public void setX_pos(int x_pos) {
         this.x_pos = x_pos;
     }
 
-    public float getY_pos() {
+    public int getY_pos() {
         return y_pos;
     }
 
-    public void setY_pos(float y_pos) {
+    public void setY_pos(int y_pos) {
         this.y_pos = y_pos;
     }
 
