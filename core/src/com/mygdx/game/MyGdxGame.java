@@ -45,8 +45,7 @@ public class MyGdxGame extends ApplicationAdapter {
         food.drawFood(foodRender);
         snake.drawSnake(shapeRenderer);
 
-//        snake.snakeMove();
-        snake.updateSnakeBody(food);
+        snake.updateSnakeBody(this.food);
         clearScreen();
 
         shapeRenderer.end();

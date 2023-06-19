@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class Snake {
 
     private final ArrayList<Point> snakeBody = new ArrayList<>();
+    private final int squareOfScreen;
     private int x_pos = 0;
     private int y_pos = 0;
-    private final int squareOfScreen;
     private int switchDigit = 22;
 
     public Snake(int squareOfScreen) {
@@ -36,26 +36,25 @@ public class Snake {
     }
 
     public void drawSnake(ShapeRenderer shapeRenderer) {
-
         for (Point point : snakeBody) {
             shapeRenderer.setColor(80 / 255.0f, 80 / 255.0f, 50 / 255.0f, 1);
             shapeRenderer.rect(point.getX(), point.getY(), squareOfScreen, squareOfScreen);
         }
-        shapeRenderer.rect(this.x_pos, this.y_pos, squareOfScreen, squareOfScreen);
     }
 
     public boolean isCollisionWithFood(Food food) {
-        Point headSnake = snakeBody.get(0);
-        return headSnake.getX() == food.getX_pos() || headSnake.getY() == food.getY_pos();
+        Point headSnake = snakeBody.get(snakeBody.size() - 1);
+        return headSnake.getX() == food.getX_pos() && headSnake.getY() == food.getY_pos();
     }
 
     public void updateSnakeBody(Food food) {
         snakeMove();
-        if(isCollisionWithFood(food)) {
+        boolean isColl = isCollisionWithFood(food);
+        if (isColl) {
             snakeBody.add(new Point(this.x_pos, this.y_pos));
+            food.newFoodPosition();
         }
-
-        snakeBody.remove(snakeBody.size() - 1);
+        snakeBody.remove(snakeBody.get(0));
     }
 
     public void snakeMove() {
@@ -95,5 +94,6 @@ public class Snake {
                 this.y_pos = getY_pos();
                 break;
         }
+        snakeBody.add(new Point(this.x_pos, this.y_pos));
     }
 }
