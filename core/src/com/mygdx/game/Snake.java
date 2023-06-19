@@ -13,8 +13,12 @@ public class Snake {
     private int x_pos = 0;
     private int y_pos = 0;
     private int switchDigit = 22;
+    private int widthScreen;
+    private int heightScreen;
 
-    public Snake(int squareOfScreen) {
+    public Snake(int squareOfScreen, int widthScreen, int heightScreen) {
+        this.widthScreen = widthScreen;
+        this.heightScreen = heightScreen;
         snakeBody.add(new Point(this.x_pos, this.y_pos));
         this.squareOfScreen = squareOfScreen;
     }
@@ -95,5 +99,21 @@ public class Snake {
                 break;
         }
         snakeBody.add(new Point(this.x_pos, this.y_pos));
+    }
+
+    public int isGameOver() {
+
+        Point head = snakeBody.get(snakeBody.size() - 1);
+        if (head.getY() > this.heightScreen || head.getY() < 0 || head.getX() > this.widthScreen || head.getX() < 0) {
+            return 1;
+        }
+
+        for (int i = snakeBody.size() - 3; i >= 0; i--) {
+            if (head.getX() == snakeBody.get(i).getX() && head.getY() == snakeBody.get(i).getY()) {
+                snakeBody.clear();
+                return 1;
+            }
+        }
+        return 0;
     }
 }
