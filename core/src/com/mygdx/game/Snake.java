@@ -13,13 +13,13 @@ public class Snake {
     private int x_pos = 0;
     private int y_pos = 0;
     private int switchDigit = 22;
-    private int widthScreen;
-    private int heightScreen;
+    private final int widthScreen;
+    private final int heightScreen;
 
     public Snake(int squareOfScreen, int widthScreen, int heightScreen) {
         this.widthScreen = widthScreen;
         this.heightScreen = heightScreen;
-        snakeBody.add(new Point(this.x_pos, this.y_pos));
+        this.snakeBody.add(new Point(this.x_pos, this.y_pos));
         this.squareOfScreen = squareOfScreen;
     }
 

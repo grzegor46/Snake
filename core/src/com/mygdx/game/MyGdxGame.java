@@ -14,9 +14,9 @@ import static java.lang.Thread.sleep;
 public class MyGdxGame extends ApplicationAdapter {
 
 
+    private final int squareOfScreen = 10;
     private int widthScreen;
     private int heightScreen;
-    private final int squareOfScreen = 10;
     private OrthographicCamera orthographicCamera;
     private ShapeRenderer shapeRenderer;
     private ShapeRenderer foodRender;
@@ -51,7 +51,7 @@ public class MyGdxGame extends ApplicationAdapter {
         snake.drawSnake(shapeRenderer);
 
         snake.updateSnakeBody(this.food);
-        if(snake.isGameOver() == 1) {
+        if (snake.isGameOver() == 1) {
             batch.begin();
             clearScreen();
             batch.draw(texture, 0, 0);
@@ -64,8 +64,8 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     private void clearScreen() {
-        Gdx.gl.glClearColor( 1, 0, 0, 1 );
-        Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
     }
 
     @Override
